@@ -31,22 +31,5 @@ jobs:
         terraform plan -no-color -input=false
         ls -la
       continue-on-error: true
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply -auto-approve
-      continue-on-error: true
-    - name: aws cli install
-      id: install-aws-cli
-      uses: unfor19/install-aws-cli-action@v1
-      with:
-        version: 2                         # default
-        verbose: false                     # default
-        arch: amd64                        # allowed values: amd64, arm64
-        bindir: "/usr/local/bin"           # default
-        installrootdir: "/usr/local"       # default
-        rootdir: ""                        # defaults to "PWD"
-        workdir: ""                        # defaults to "PWD/unfor19-awscli"
-    - name: Copy index.html
-      run: |
-        aws s3 sync . s3://deploymentbucket12654 --exclude "*" --include "index.html"
+   
       
