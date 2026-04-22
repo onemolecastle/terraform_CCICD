@@ -1,0 +1,33 @@
+name: terraform cicd
+#on: push
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v4
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+
+    - name: Terraform Init
+      id: init
+      run: terraform init -input=false
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color -input=false
+      continue-on-error: true
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -no-color -input=false -autoapprove=yes
+      continue-on-error: true
+    - name: Copy index.html
+      run: |
+        aws s3 sync index.html s3://deployment_bucket_12654
+      
