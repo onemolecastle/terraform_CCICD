@@ -46,5 +46,5 @@ jobs:
         workdir: ""                        # defaults to "PWD/unfor19-awscli"
     - name: Copy index.html
       run: |
-        run: aws s3 sync . s3://deployment_bucket_12654 --exclude "*" --include "index.html"
+        run: aws s3 sync . s3://deploymentbucket12654 --exclude "*" --include "index.html"
       
