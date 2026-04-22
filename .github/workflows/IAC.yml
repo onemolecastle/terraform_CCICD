@@ -27,6 +27,17 @@ jobs:
       id: apply
       run: terraform apply -no-color -input=false -autoapprove=yes
       continue-on-error: true
+    - name: aws cli install
+      id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version: 2                         # default
+        verbose: false                     # default
+        arch: amd64                        # allowed values: amd64, arm64
+        bindir: "/usr/local/bin"           # default
+        installrootdir: "/usr/local"       # default
+        rootdir: ""                        # defaults to "PWD"
+        workdir: ""                        # defaults to "PWD/unfor19-awscli"
     - name: Copy index.html
       run: |
         aws s3 sync index.html s3://deployment_bucket_12654
