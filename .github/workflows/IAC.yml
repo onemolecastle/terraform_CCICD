@@ -30,6 +30,8 @@ jobs:
       run: |
         terraform plan -no-color -input=false
         ls -la
+        cd .terraform
+        ls -la
       continue-on-error: true
     - name: Terraform Apply
       id: apply
