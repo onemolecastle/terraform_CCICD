@@ -31,7 +31,7 @@ jobs:
       continue-on-error: true
     - name: Terraform Apply
       id: apply
-      run: terraform apply -no-color -input=false
+      run: terraform apply -no-color -autoapprove=yes
       continue-on-error: true
     - name: aws cli install
       id: install-aws-cli
