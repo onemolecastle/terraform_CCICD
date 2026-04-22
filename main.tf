@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "example" {
-  bucket = "deployment_bucket_12654"
+  bucket = "deploymentbucket12654"
 
   tags = {
     Name        = "My bucket"
